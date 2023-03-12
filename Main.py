@@ -6,18 +6,18 @@ from keras.models import load_model
 model = load_model('modelo.h5')
 
 # Definir etiquetas de clases
-CLASES = {0: 'camisa', 1: 'pantalones', 2: 'zapatos'}
+CLASES = {0: 'Camisa', 1: 'Pantalones', 2: 'Zapatos'}
 
 # Inicializar cámara web
 cap = cv2.VideoCapture(0)
 
-while True:
+while cap.isOpened():
     # Capturar imagen de la cámara web
     ret, img = cap.read()
     
     # Preprocesar imagen
-    img = cv2.resize(img, (150, 150))
-    img = img.reshape(1, 150, 150, 3)
+    img = cv2.resize(img, (100, 100))
+    img = img.reshape(1, 100, 100, 3)
     img = img.astype('float32') / 255
     
     # Realizar predicción utilizando el modelo de la CNN

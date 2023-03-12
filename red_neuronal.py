@@ -10,7 +10,7 @@ from sklearn.model_selection import cross_val_score
 from keras.wrappers.scikit_learn import KerasClassifier
 
 
-batch_size = 250
+batch_size = 300
 img_height = 100
 img_width = 100
 
@@ -20,15 +20,16 @@ def cargar_imagenes():
         image_size=(img_height, img_width),
         batch_size=batch_size)
     val_ds = tf.keras.utils.image_dataset_from_directory(
-        "./data/validaciones",
+        "./data/validacion",
         image_size=(img_height, img_width),
         batch_size=batch_size)
     class_names = train_ds.class_names
+    
     plt.figure(figsize=(100, 100))
 
     for images, labels in train_ds.take(1):
-        for i in range(100):
-            ax = plt.subplot(10, 10, i + 1)
+        for i in range(30):
+            ax = plt.subplot(5, 6, i + 1)
             plt.imshow(images[i].numpy().astype("uint8"))
             plt.title(class_names[labels[i]])
             plt.axis("off")
@@ -72,7 +73,7 @@ def funcion_activacion ():
         modelo.compile(optimizer='adam',
                 loss=tf.keras.losses.SparseCategoricalCrossentropy(),
                 metrics=['accuracy'])
-        
+        modelo.save('modelo.h5')
         return modelo
 
 def entrenamiento(modelo):
