@@ -16,17 +16,17 @@ while cap.isOpened():
     ret, img = cap.read()
     
     # Preprocesar imagen
-    img = cv2.resize(img, (100, 100))
-    img = img.reshape(1, 100, 100, 3)
-    img = img.astype('float32') / 255
+    imgpre = cv2.resize(img, (100, 100))
+    imgpre = imgpre.reshape(1, 100, 100, 3)
+    imgpre = imgpre.astype('float32') / 255
     
     # Realizar predicción utilizando el modelo de la CNN
-    pred = model.predict(img)
+    pred = model.predict(imgpre)
     clase_pred = CLASES[pred.argmax()]
     
     # Mostrar imagen y etiqueta de clase predicha en ventana
-    cv2.imshow('Prendas', img)
     cv2.putText(img, clase_pred, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+    cv2.imshow('Prendas', img)
     
     # Redirigir a la página web correspondiente según la clase predicha
     if clase_pred == 'camisa':
