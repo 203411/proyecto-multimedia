@@ -67,13 +67,13 @@ def funcion_activacion ():
         tf.keras.layers.Flatten(input_shape=(img_height, img_width,3)),
         tf.keras.layers.Dense(100,activation=tf.nn.relu),
         tf.keras.layers.Dense(50,activation=tf.nn.relu),
-        tf.keras.layers.Dense(8,activation=tf.nn.softmax),
+        tf.keras.layers.Dense(3,activation=tf.nn.softmax),
     
         ])
         modelo.compile(optimizer='adam',
                 loss=tf.keras.losses.SparseCategoricalCrossentropy(),
                 metrics=['accuracy'])
-        modelo.save('modelo.h5')
+       
         return modelo
 
 def entrenamiento(modelo):
@@ -89,6 +89,9 @@ def entrenamiento(modelo):
         val_loss = history.history['val_loss']
 
         epochs_range = range(epochs)
+        modelo.save('modelo.h5')
+        # with open('modelo.json', 'w') as archivo_json:
+        #     archivo_json.write(modelo_json)
         return epochs_range ,acc,val_acc,loss,val_loss
 
 def graficas(epochs_range,acc,val_acc,loss,val_loss):
@@ -168,5 +171,5 @@ if __name__ == '__main__':
     graficas(epochs_range ,acc,val_acc,loss,val_loss)
     comprobacion(val_ds,class_name,f_activacion)
     test_images,test_labels=matriz_confusion(train_ds,class_name,f_activacion)
-    validacion_cruzada(test_images,test_labels)
+    # validacion_cruzada(test_images,test_labels)
    
