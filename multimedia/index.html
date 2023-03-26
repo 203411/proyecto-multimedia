@@ -76,7 +76,7 @@
                     </div>
                     <canvas id="othercanvas" width="100" height="100" style="display: none"></canvas>
                 </div>
-                <div class="text-center" id="resultado" data-link=http://localhost:3000></div>
+                <div class="text-center" id="resultado" data-link=https://my-app-multimedia.vercel.app></div>
             </div>
         </div>
 
@@ -228,7 +228,7 @@
                 var clases_to_send = ["Camisas", "Pantalones", "Zapatos"];
                 console.log("Prediccion", clases[mayorIndice]);
                 let indice = clases.indexOf(clases[mayorIndice]);
-                let url_model = 'http://localhost:3000/' + clases_to_send[indice];
+                let url_model = 'https://my-app-multimedia.vercel.app/' + clases_to_send[indice];
                 let divResultado = document.getElementById('resultado');
                 let enlace = document.createElement('a');
                 let nuevoEnlace = url_model;
